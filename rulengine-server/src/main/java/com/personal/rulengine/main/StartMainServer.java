@@ -13,7 +13,7 @@ public class StartMainServer {
     
     public static void main(String[] args) {
         com.alibaba.dubbo.container.Main.main(args);
-        System.out.println("StartMainServer.main执行完成...");
+        System.out.println("StartMainServer.main执行完成.....");
     }
     
 }
