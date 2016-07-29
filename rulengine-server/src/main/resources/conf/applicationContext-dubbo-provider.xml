@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 增加统一超时时间 add by lxb -->
+    <dubbo:provider timeout="60000" > </dubbo:provider>
+    
+    <!-- <import resource="../../hzzxyy-remote/applicationContext.xml"/> -->
+    
+    <!-- 接口服务定义 -->
+    <dubbo:service ref="test.ITestEntityService" interface="com.personal.rulengine.server.api.ITestEntityService" />
+    
+</beans>

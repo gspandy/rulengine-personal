@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.personal.rulengine.mapper.TestEntityDAO">
+
+    <resultMap id="testEntityMap" type="testEntity"/>
+
+    <sql id="basicColumns">
+		m.realKey 		    AS realKey ,
+		m.realValue 			AS realValue ,
+		m.id 						AS id ,
+		m.code 					AS code ,
+		m.description 		AS description ,
+		m.deleted 				AS deleted ,
+		m.createTime 		AS createTime,
+		m.modifyTime 		AS modifyTime
+	</sql>
+    
+    <select id="findOne" parameterType="Long" resultMap="testEntityMap">
+        select
+        <include refid="basicColumns"/>
+        from  t_test_entity m
+        where m.id=#{_parameter}
+    </select>
+
+    <select id="findAll" parameterType="Map" resultMap="testEntityMap">
+        select
+        <include refid="basicColumns"/>
+        from  t_test_entity m
+        <where>
+        	<if test="realKey != null and realKey !=''">
+                AND m.realKey = #{realKey}
+            </if>
+        	<if test="realValue != null and realValue !=''">
+                AND m.realValue = #{realValue}
+            </if>
+        	<if test="id != null and id !=''">
+                AND m.id = #{id}
+            </if>
+        	<if test="code != null and code !=''">
+                AND m.code = #{code}
+            </if>
+        	<if test="1==1">
+                AND m.deleted = false
+            </if>
+            <!-- <if test="beginDateTime != null and beginDateTime !=''">
+                <![CDATA[ AND m.createTime >= #{beginDateTime} ]]>
+            </if>
+            <if test="endDateTime != null and endDateTime !=''">
+                <![CDATA[ AND m.createTime <= #{endDateTime} ]]>
+            </if> -->
+        </where>
+    </select>
+	
+	
+    <insert id="insert" parameterType="testEntity" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO t_test_entity (
+				realKey ,
+				realValue ,
+				code ,
+				description ,
+				deleted ,
+				createTime ,
+				modifyTime
+		) VALUES (
+				#{realKey },
+				#{realValue },
+				#{code },
+				#{description },
+				#{deleted },
+				#{createTime },
+				#{modifyTime }
+		)
+	</insert>
+	
+    <update id="update" parameterType="testEntity">
+        UPDATE  t_test_entity m
+        <set>
+            <if test="realKey != null and realKey !=''">
+                 m.realKey = #{realKey},
+            </if>
+        	<if test="realValue != null and realValue !=''">
+                 m.realValue = #{realValue},
+            </if>
+        	<if test="description != null and description !=''">
+                 m.description = #{description},
+            </if>
+        	<if test="deleted != null ">
+                 m.deleted = #{deleted},
+            </if>
+            <if test="modifyTime != null">
+                m.modifyTime = #{modifyTime},
+            </if>
+        </set>
+        WHERE
+        m.id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+       DELETE FROM  t_test_entity where id=${_parameter}
+    </delete>
+    
+    <insert id="insertList" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		insert into t_test_entity
+		<foreach item="field" index="index" collection="fields" open="(" separator="," close=")">
+			${field}
+		</foreach>
+		values
+		<foreach item="list" index="index" collection="values" separator=",">
+			<foreach item="value" index="index" collection="list" open="(" separator="," close=")">
+				#{value}
+			</foreach>
+		</foreach>
+	</insert>
+	
+</mapper> 
