@@ -33,6 +33,7 @@ public class TestEntityServiceImplTest extends JUnitTransactionalBaseTest {
         System.out.println(viewObject.toString());
         System.out.println(JSON.toJSONString(viewObject));
         Assert.assertNotNull(true);
+        
     }
 
     @Test
