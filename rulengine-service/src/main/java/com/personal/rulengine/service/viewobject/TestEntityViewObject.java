@@ -11,6 +11,15 @@ public class TestEntityViewObject extends BaseViewObject<TestEntityViewObject> {
 
     private String realKey;
     private String realValue;
+    private TestEntityViewObject myself;
+    
+    public TestEntityViewObject getMyself() {
+        return myself;
+    }
+
+    public void setMyself(TestEntityViewObject myself) {
+        this.myself = myself;
+    }
 
     public String getRealKey() {
         return realKey;

@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 
+import com.alibaba.fastjson.JSON;
 import com.personal.rulengine.common.utils.DatetimeUtils;
 import com.personal.rulengine.service.TestEntityService;
 import com.personal.rulengine.service.base.JUnitTransactionalBaseTest;
@@ -18,6 +19,21 @@ public class TestEntityServiceImplTest extends JUnitTransactionalBaseTest {
 
     @Resource
     private TestEntityService testEntityService;
+    
+    /**
+     * 设置自我关联属性,查看toString输出信息
+     * "TestEntityViewObject":{"$ref":"@"},表示自我引用
+     */
+    @Test
+    public void testTostring() {
+        TestEntityViewObject viewObject = testEntityService.getById(5L);
+        Assert.assertNotNull(viewObject);
+        //设置自我关联属性
+        viewObject.setMyself(viewObject);
+        System.out.println(viewObject.toString());
+        System.out.println(JSON.toJSONString(viewObject));
+        Assert.assertNotNull(true);
+    }
 
     @Test
     @Rollback(false)
