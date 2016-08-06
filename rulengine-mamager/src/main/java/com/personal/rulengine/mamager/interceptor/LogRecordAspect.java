@@ -152,7 +152,6 @@ public class LogRecordAspect {
     /**
      * 解析request对象请求参数信息
      */
-    @SuppressWarnings("unchecked")
     private Map<String ,Object> getMapFromRequest(HttpServletRequest request) throws Exception{
         Map<String, String[]> requestMap = request.getParameterMap();
         Map<String ,Object> resultMap = new HashMap<String ,Object>();

@@ -1,6 +1,7 @@
 package com.personal.rulengine.mamager.controller.order;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -8,7 +9,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -39,7 +39,7 @@ import com.personal.rulengine.server.api.ITestEntityService;
 public class TestEntityController extends CommonController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
+//    @Autowired
     private ITestEntityService iTestEntityService;
     
     @Resource
@@ -47,10 +47,20 @@ public class TestEntityController extends CommonController {
     
 
     /**
-     * 上传测试首页
      */
-   
+    @RequestMapping(value = "/names")
+    @ResponseBody
+    public Object testListPamas(@RequestParam("name")List<String> names ) {
+        logger.info("@RequestMapping:/test/welcome执行了...");
+        logger.info("参数信息为:{}",JSON.toJSONString(names));
+        return ResultInfoUtil.setErrorInfo(ErrorCodeConsField.ERROR_MSG_10003, 
+                getMessage(ErrorCodeConsField.ERROR_MSG_10003));
+    }
+    
+    /**
+     */
     @RequestMapping(value = "/welcome")
+    @ResponseBody
     public Object uploadIndex(ModelAndView mav) {
         logger.info("@RequestMapping:/test/welcome执行了...");
         return ResultInfoUtil.setErrorInfo(ErrorCodeConsField.ERROR_MSG_10003, 
