@@ -31,7 +31,7 @@ public class TestEntityServiceImplTest extends JUnitTransactionalBaseTest {
         //设置自我关联属性.
         viewObject.setMyself(viewObject);
         System.out.println(viewObject.toString());
-        System.out.println(JSON.toJSONString(viewObject));
+        System.out.println("master添加"+JSON.toJSONString(viewObject));
         Assert.assertNotNull(true);
         
     }
