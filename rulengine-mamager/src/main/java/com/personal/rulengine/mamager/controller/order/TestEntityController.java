@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
@@ -60,7 +62,7 @@ public class TestEntityController extends CommonController {
     @RequestMapping(value = "/download1")
     @ResponseBody
     public void download(OutputStream out ) {
-        logger.info("@RequestMapping:/test/download执行了...");
+        logger.info("@RequestMapping:/test/download1执行了...");
         
         String pathname="D:\\temp\\VerifyCode.jpg";
         InputStream in=null;
@@ -79,7 +81,7 @@ public class TestEntityController extends CommonController {
     @RequestMapping(value = "/download2")
     @ResponseBody
     public void download2(OutputStream out,HttpServletResponse response ) {
-        logger.info("@RequestMapping:/test/download执行了...");
+        logger.info("@RequestMapping:/test/download2执行了...");
         
         response.setCharacterEncoding("utf-8");
         response.setContentType("application/force-download");
@@ -89,7 +91,10 @@ public class TestEntityController extends CommonController {
         InputStream in=null;
         try {
             in = new  FileInputStream(new File(pathname));
-            FileCopyUtils.copy(in, out);
+            //int length = FileCopyUtils.copy(in, out);
+            //或者如下
+            long length = Streams.copy(in, out, true);
+            logger.warn("length is:{}",length);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,6 +118,19 @@ public class TestEntityController extends CommonController {
     public Object names2(@RequestParam("name")List<String> names ) {
         logger.info("@RequestMapping:/test/names2执行了...");
         logger.info("参数信息为:{}",JSON.toJSONString(names));
+        return ResultInfoUtil.setErrorInfo(ErrorCodeConsField.ERROR_MSG_10003, 
+                getMessage(ErrorCodeConsField.ERROR_MSG_10003));
+    }
+    
+    
+    @RequestMapping(value = "/webrequest")
+    @ResponseBody
+    public Object webrequest(WebRequest request ) {
+        logger.info("@RequestMapping:/test/webrequest执行了...");
+        String username = request.getParameter("username");
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        logger.warn(username);
+        logger.warn(parameterMap.toString());
         return ResultInfoUtil.setErrorInfo(ErrorCodeConsField.ERROR_MSG_10003, 
                 getMessage(ErrorCodeConsField.ERROR_MSG_10003));
     }
