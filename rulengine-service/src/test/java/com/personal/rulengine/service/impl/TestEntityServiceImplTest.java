@@ -28,7 +28,7 @@ public class TestEntityServiceImplTest extends JUnitTransactionalBaseTest {
     public void testTostring() {
         TestEntityViewObject viewObject = testEntityService.getById(5L);
         Assert.assertNotNull(viewObject);
-        //设置自我关联属性
+        //设置自我关联属性.
         viewObject.setMyself(viewObject);
         System.out.println(viewObject.toString());
         System.out.println(JSON.toJSONString(viewObject));
