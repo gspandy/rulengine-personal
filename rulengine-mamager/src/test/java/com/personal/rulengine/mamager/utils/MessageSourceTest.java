@@ -33,7 +33,7 @@ public class MessageSourceTest extends BaseTestController {
     // @Value("${phone.name}")
     private String value2;
 
-    @Value("${orm.mysql.jdbc.password}")
+    //@Value("${dubbo.registry.address}")
     private String value3;
 
     @Autowired
