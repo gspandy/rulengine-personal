@@ -47,6 +47,11 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>/server/*</url-pattern>
 	</servlet-mapping>
+	<!-- <servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>*.json</url-pattern>
+		<url-pattern>*.xml</url-pattern>
+	</servlet-mapping> -->
 
 	<!-- Spring字符集过滤器 -->
 	<filter>
@@ -74,6 +79,10 @@
 			<!-- 是否允许清空统计数据 -->
 			<param-name>resetEnable</param-name>
 			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>allow</param-name>
+			<param-value>127.0.0.1</param-value>
 		</init-param>
 		<init-param>
 			<!-- 用户名 -->

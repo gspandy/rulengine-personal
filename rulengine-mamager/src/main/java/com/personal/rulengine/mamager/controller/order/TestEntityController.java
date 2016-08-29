@@ -2,7 +2,6 @@ package com.personal.rulengine.mamager.controller.order;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -45,11 +44,11 @@ import com.personal.rulengine.server.api.ITestEntityService;
  *
  */
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/test0")
 public class TestEntityController extends CommonController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-//    @Autowired
+    @Autowired
     private ITestEntityService iTestEntityService;
     
     @Resource
@@ -104,14 +103,14 @@ public class TestEntityController extends CommonController {
     /**
      * 测试传递List或者String[]格式的数据请求解析
      * http://localhost:8080/rulengine-mamager/server/test/names1?name=1&name=liubao&name=wangli
+     * http://localhost:8080/rulengine-mamager/server/test/names1?name=1,liubao,wangli
      */
     @RequestMapping(value = "/names1")
     @ResponseBody
     public Object names1(@RequestParam("name")String[] names ) {
         logger.info("@RequestMapping:/test/names1执行了...");
         logger.info("参数信息为:{}",JSON.toJSONString(names));
-        return ResultInfoUtil.setErrorInfo(ErrorCodeConsField.ERROR_MSG_10003, 
-                getMessage(ErrorCodeConsField.ERROR_MSG_10003));
+        return ResultInfoUtil.setSuccessInfo(names);
     }
     @RequestMapping(value = "/names2")
     @ResponseBody
