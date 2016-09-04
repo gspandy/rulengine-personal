@@ -16,6 +16,7 @@ import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -102,8 +103,8 @@ public class TestEntityController extends CommonController {
     
     /**
      * 测试传递List或者String[]格式的数据请求解析
-     * http://localhost:8080/rulengine-mamager/server/test/names1?name=1&name=liubao&name=wangli
-     * http://localhost:8080/rulengine-mamager/server/test/names1?name=1,liubao,wangli
+     * http://localhost:8080/rulengine-mamager/server/test0/names1?name=1&name=liubao&name=wangli
+     * http://localhost:8080/rulengine-mamager/server/test0/names1?name=1,liubao,wangli
      */
     @RequestMapping(value = "/names1")
     @ResponseBody
@@ -162,6 +163,15 @@ public class TestEntityController extends CommonController {
         resultMap.put("totalCount", totalCount);
         //return ResultInfoUtil.setSuccessInfo(resultMap);
         return totalCount;
+    }
+    
+    /**
+     * http://localhost:8080/rulengine-mamager/server/test0/testRest
+     */
+    @RequestMapping(value = "/testRest")
+    public ModelAndView testRest(ModelAndView view) {
+        view.setViewName("/jsp/testRest");
+        return view;
     }
     
 }

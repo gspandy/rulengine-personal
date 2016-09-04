@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+            http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+            
+    <!--  <context:component-scan base-package="com.jh.statistics">
+		<context:exclude-filter type="regex" expression="com.personal.rulengine.mamager.controller.*" />
+	</context:component-scan> -->
+            
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- 发布一个不带接口的webservice-->
+	<!-- http://localhost:8080/rulengine-mamager/ws/userService?wsdl -->
+	<jaxws:endpoint id="userService" address="/userService" implementor="com.personal.rulengine.mamager.cxf.web.UserServiceImpl"/>
+	
+	<!-- 发布服务的接口 -->
+	<!-- http://localhost:8080/rulengine-mamager/ws/departmentService?wsdl -->
+	<jaxws:server id="departmentService" address="/departmentService" serviceClass="com.personal.rulengine.mamager.cxf.web.DepartmentService">
+		 <jaxws:serviceBean>
+		 	<bean class="com.personal.rulengine.mamager.cxf.web.DepartmentServiceImpl"/>
+		 </jaxws:serviceBean>
+		 
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+		</jaxws:outInterceptors>
+	</jaxws:server>
+
+	<!-- 提供rest 的访问地址 -->
+	<!-- http://localhost:8080/rulengine-mamager/ws/restService/student/888/info?name=%E5%88%98%E4%BF%9D -->
+	<jaxrs:server id="restService" address="/restService"> 
+		<jaxrs:serviceBeans>
+				<bean id="personService" class="com.personal.rulengine.mamager.cxf.rest.PersonServiceImpl" />
+		</jaxrs:serviceBeans>
+		<jaxrs:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+		</jaxrs:inInterceptors>
+		<jaxrs:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+		</jaxrs:outInterceptors>
+	</jaxrs:server>
+
+</beans>

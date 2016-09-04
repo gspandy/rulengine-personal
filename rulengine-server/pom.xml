@@ -45,6 +45,66 @@
 
 
 	</dependencies>
-
-
+	
+	<build>  
+        <finalName>${project.artifactId}-${project.version}}</finalName>  
+        <sourceDirectory>src/main/java</sourceDirectory>  
+        <resources>  
+            <!-- 控制资源文件的拷贝 -->  
+            <resource>  
+                <directory>src/main/resources</directory>  
+                <targetPath>${project.build.directory}</targetPath>  
+            </resource>  
+        </resources>  
+        <plugins> 
+			<!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->  
+	        <!-- 运行mvn clean package即可 -->
+			<plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-jar-plugin</artifactId>  
+			    <version>2.4</version>  
+			    <configuration>  
+			   		<classesDirectory>target/classes</classesDirectory>
+			        <archive>  
+			            <manifest>
+			                <addClasspath>true</addClasspath>  
+			                <classpathPrefix>lib/</classpathPrefix>  
+			                <mainClass>com.personal.rulengine.main.StartMainServer</mainClass>  
+                            <!-- <mainClass>.....StartMainServer</mainClass>  --> 
+			            </manifest>  
+			        </archive>  
+			    </configuration>  
+			</plugin>
+            
+            <!-- 运行mvn assembly:assembly -->
+            <!-- <plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-assembly-plugin</artifactId>  
+			    <version>2.3</version>  
+			    <configuration>  
+			        <appendAssemblyId>false</appendAssemblyId>  
+			        <descriptorRefs>  
+			            <descriptorRef>jar-with-dependencies</descriptorRef>  
+			        </descriptorRefs>  
+			        <archive>  
+			            <manifest>  
+			                <mainClass>com.personal.rulengine.main.StartMainServer</mainClass>  
+			            </manifest>  
+			        </archive>  
+			    </configuration>  
+			    <executions>  
+			        <execution>  
+			            <id>make-assembly</id>  
+			            <phase>package</phase>  
+			            <goals>  
+			                <goal>assembly</goal>  
+			            </goals>  
+			        </execution>  
+			    </executions>  
+			</plugin> --> 
+            
+            
+        </plugins>
+	</build>
+	
 </project>

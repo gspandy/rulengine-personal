@@ -29,6 +29,42 @@
 			<version>2.7.5</version>
 		</dependency>
 		-->
+		
+	<!-- 	<dependency>
+		<groupId>org.apache.cxf</groupId>
+		<artifactId>cxf-xjc</artifactId>
+		<version>2.2.12</version>
+	</dependency> -->
+	<!-- <dependency>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf</artifactId>
+    <version>2.4.2</version>
+</dependency> -->
+	<!-- CXF Dependencies -->
+		<!-- <dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency> -->
+		<!-- <dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>${cxf.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency> -->
+		 <!-- End of CXF Dependencies -->
+	<dependency>
+		<groupId>javax.ws.rs</groupId>
+		<artifactId>javax.ws.rs-api</artifactId>
+		<version>2.0.1</version>
+	</dependency>
 
 		<dependency>
 			<groupId>com.personal.project</groupId>
