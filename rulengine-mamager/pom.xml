@@ -30,23 +30,14 @@
 		</dependency>
 		-->
 		
-	<!-- 	<dependency>
-		<groupId>org.apache.cxf</groupId>
-		<artifactId>cxf-xjc</artifactId>
-		<version>2.2.12</version>
-	</dependency> -->
-	<!-- <dependency>
-    <groupId>org.apache.cxf</groupId>
-    <artifactId>cxf</artifactId>
-    <version>2.4.2</version>
-</dependency> -->
-	<!-- CXF Dependencies -->
-		<!-- <dependency>
+
+		<!-- 
+		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>${cxf.version}</version>
-		</dependency> -->
-		<!-- <dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http-jetty</artifactId>
 			<version>${cxf.version}</version>
@@ -58,13 +49,40 @@
 					<artifactId>javax.servlet-api</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-xjc</artifactId>
+			<version>2.2.12</version>
 		</dependency> -->
-		 <!-- End of CXF Dependencies -->
-	<dependency>
-		<groupId>javax.ws.rs</groupId>
-		<artifactId>javax.ws.rs-api</artifactId>
-		<version>2.0.1</version>
-	</dependency>
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jettison</groupId>
+			<artifactId>jettison</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.neethi</groupId>
+			<artifactId>neethi</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ws.xmlschema</groupId>
+			<artifactId>xmlschema-core</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>com.personal.project</groupId>

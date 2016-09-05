@@ -25,7 +25,7 @@ import javax.xml.ws.http.HTTPBinding;
 public interface RestService {
     
     /**
-     * @GET 提供对外的访问地址
+     * @GET 提供对外的访问地址,只有一种生效,以前面的那个生效.
      * @Path 该方法的访问地址
      * @Produces 传递数据的格式 //参数....
      *  http://localhost:8080/rulengine-mamager/ws/restService/student/888/info?name=%E5%88%98%E4%BF%9D
