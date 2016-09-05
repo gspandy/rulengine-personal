@@ -12,8 +12,11 @@ import com.personal.rulengine.mamager.cxf.rest.Person;
  * @Comp personal
  * @Date 2016年9月4日下午8:25:36
  * 
+ * 可以通过修改targetNamespace,改变命名空间,隐藏包结构信息
+ * http://localhost:8080/rulengine-mamager/ws/departmentService?wsdl
+ * 
  */
-@WebService
+@WebService(serviceName="departmentService",targetNamespace="http://web2.cxf.mamager.rulengine.personal.com/")
 public interface DepartmentService {
 
     public Person getPerson(int id, String name);

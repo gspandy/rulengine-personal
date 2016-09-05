@@ -57,6 +57,6 @@
     </bean>
     
     <import resource="classpath*:conf/applicationContext-dubbo-consumer.xml"/>
-	<import resource="classpath:*conf/applicationContext-cxf.xml"/>
+	<!-- <import resource="classpath:*conf/applicationContext-cxf.xml"/> -->
     
 </beans>

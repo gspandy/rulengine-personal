@@ -12,9 +12,17 @@
 		<context:exclude-filter type="regex" expression="com.personal.rulengine.mamager.controller.*" />
 	</context:component-scan> -->
             
+    <!-- soap自带的一些必须依赖文件,最好全部导入 -->        
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	
+	<!-- 查看下面的webservice发布接口信息地址,包括了rest格式的发布接口 -->
+	<!-- http://localhost:8080/rulengine-mamager/ws/ -->
+	
+	<!-- http://localhost:8080/rulengine-mamager/ws/userService?wsdl -->
+	<!-- http://localhost:8080/rulengine-mamager/ws/departmentService?wsdl -->
+	<!-- http://localhost:8080/rulengine-mamager/ws/restService?_wadl&_type=xml -->
 	
 	<!-- 发布一个不带接口的webservice-->
 	<jaxws:endpoint id="userService" address="/userService" implementor="com.personal.rulengine.mamager.cxf.web.UserServiceImpl"/>
@@ -34,7 +42,6 @@
 	</jaxws:server>
 
 	<!-- 提供rest 的访问地址 -->
-	<!-- http://localhost:8080/rulengine-mamager/ws/restService/student/888/info?name=%E5%88%98%E4%BF%9D -->
 	<jaxrs:server id="restService" address="/restService"> 
 		<jaxrs:serviceBeans>
 				<bean id="personService" class="com.personal.rulengine.mamager.cxf.rest.PersonServiceImpl" />

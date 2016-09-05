@@ -22,7 +22,7 @@ System.out.println(basePath);
 	<script type="text/javascript">
 	
 		$(function(){
-			var data='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://web.cxf.mamager.rulengine.personal.com/">';
+			var data='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://web2.cxf.mamager.rulengine.personal.com/">';
 			data+='<soapenv:Header/><soapenv:Body><web:getPerson><arg0>11</arg0><arg1>刘保</arg1></web:getPerson></soapenv:Body></soapenv:Envelope>';
 			$("#buttonajax").click(function(){
 				$.ajax({

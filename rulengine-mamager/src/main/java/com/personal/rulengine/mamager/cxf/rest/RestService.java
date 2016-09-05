@@ -1,10 +1,14 @@
 package com.personal.rulengine.mamager.cxf.rest;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.xml.ws.BindingType;
+import javax.xml.ws.WebServiceProvider;
+import javax.xml.ws.http.HTTPBinding;
 
 /**
  *  该类的访问地址...
@@ -13,8 +17,11 @@ import javax.ws.rs.QueryParam;
  * @Comp personal
  * @Date 2016年9月4日下午5:25:59
  *
+ *@BindingType 指定是soap1.1还是soap1.2协议
  */
+@WebServiceProvider
 @Path(value = "/student/{id}")
+@BindingType(value=HTTPBinding.HTTP_BINDING)
 public interface RestService {
     
     /**
@@ -27,6 +34,7 @@ public interface RestService {
      *  http://localhost:8080/rulengine-mamager/ws/restService?wsdl
      */
     @GET
+    @POST
     @Path(value = "/info")
     //@Produces({ "application/json" })
     @Produces({ "application/xml" })
