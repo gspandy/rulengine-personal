@@ -17,11 +17,9 @@
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	
 	<!-- 发布一个不带接口的webservice-->
-	<!-- http://localhost:8080/rulengine-mamager/ws/userService?wsdl -->
 	<jaxws:endpoint id="userService" address="/userService" implementor="com.personal.rulengine.mamager.cxf.web.UserServiceImpl"/>
 	
 	<!-- 发布服务的接口 -->
-	<!-- http://localhost:8080/rulengine-mamager/ws/departmentService?wsdl -->
 	<jaxws:server id="departmentService" address="/departmentService" serviceClass="com.personal.rulengine.mamager.cxf.web.DepartmentService">
 		 <jaxws:serviceBean>
 		 	<bean class="com.personal.rulengine.mamager.cxf.web.DepartmentServiceImpl"/>

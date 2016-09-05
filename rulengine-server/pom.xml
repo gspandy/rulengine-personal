@@ -47,15 +47,14 @@
 	</dependencies>
 	
 	<build>  
-        <finalName>${project.artifactId}-${project.version}}</finalName>  
-        <sourceDirectory>src/main/java</sourceDirectory>  
+        <finalName>${project.artifactId}-${project.version}</finalName>  
+        <!-- <sourceDirectory>src/main/java</sourceDirectory>  
         <resources>  
-            <!-- 控制资源文件的拷贝 -->  
             <resource>  
                 <directory>src/main/resources</directory>  
                 <targetPath>${project.build.directory}</targetPath>  
             </resource>  
-        </resources>  
+        </resources>  --> 
         <plugins> 
 			<!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->  
 	        <!-- 运行mvn clean package即可 -->
@@ -70,7 +69,6 @@
 			                <addClasspath>true</addClasspath>  
 			                <classpathPrefix>lib/</classpathPrefix>  
 			                <mainClass>com.personal.rulengine.main.StartMainServer</mainClass>  
-                            <!-- <mainClass>.....StartMainServer</mainClass>  --> 
 			            </manifest>  
 			        </archive>  
 			    </configuration>  
@@ -101,7 +99,7 @@
 			            </goals>  
 			        </execution>  
 			    </executions>  
-			</plugin> --> 
+			</plugin>  -->
             
             
         </plugins>
