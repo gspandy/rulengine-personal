@@ -35,9 +35,38 @@
 		 
 		<jaxws:inInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+			
+		<!-- wss4j安全认证拦截 -->
+		<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+			<constructor-arg>
+				<map>
+					<!-- 指定认证方式为用户令牌机制 -->
+					<entry key="action" value="UsernameToken" />
+					<!-- 加密方式PasswordDigest：md5加密，PasswordText：明文-->
+					<entry key="passwordType" value="PasswordText" />
+					<!-- 密码回调方法 -->
+					<entry key="passwordCallbackClass" value="com.personal.rulengine.mamager.cxf.callback.server.ServerPasswordCallbackHandler" />
+				</map>
+			</constructor-arg>
+		</bean>
+		
 		</jaxws:inInterceptors>
+		
+		
 		<jaxws:outInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+			
+			<!-- 该测试在测试类中查看 -->
+			<!-- <bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+			<constructor-arg>
+				<map>
+					<entry key="action" value="UsernameToken" />
+					<entry key="passwordType" value="PasswordText" />
+					<entry key="passwordCallbackClass" value="com.personal.rulengine.mamager.cxf.callback.client.ClientPasswordCallbackHandler" />
+				</map>
+			</constructor-arg>
+		</bean> -->
+		
 		</jaxws:outInterceptors>
 	</jaxws:server>
 
@@ -48,6 +77,7 @@
 		</jaxrs:serviceBeans>
 		<jaxrs:inInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+		
 		</jaxrs:inInterceptors>
 		<jaxrs:outInterceptors>
 			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				            http://www.springframework.org/schema/beans/spring-beans.xsd
+				            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+				            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+				            http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
+				            
+	<!-- soap自带的一些必须依赖文件,最好全部导入 -->        
+	<!-- <import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" /> -->
+	
+	<!-- 通过jaxws:client方法调用客户端 -->
+	<jaxws:client name="userService" address="http://localhost:8080/rulengine-mamager/ws/userService"
+		serviceClass="com.personal.rulengine.mamager.cxf.web.UserServiceImpl">
+	</jaxws:client>
+
+	<jaxws:client name="departmentServiceWss4j" address="http://localhost:8080/rulengine-mamager/ws/departmentService"
+		serviceClass="com.personal.rulengine.mamager.cxf.web.DepartmentService">
+		<jaxws:outInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+			
+			<!-- wss4j输出拦截器 通过用户身份令牌请求webservice -->
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+				<constructor-arg>
+					<map>
+						<!-- 指定认证方式为用户令牌机制 -->
+						<entry key="action" value="UsernameToken" />
+						<!-- 加密方式 PasswordDigest：md5加密，PasswordText：明文 -->
+						<entry key="passwordType" value="PasswordText" />
+						<!-- 用户身份，必需给一个默认值 ，这个默认值会在passwordCallback重新赋值，如果在passwordCallback不赋值将使用这个用户身份 -->
+						<entry key="user" value="abc" />
+						<!-- 密码回调方法 -->
+						<entry key="passwordCallbackClass" value="com.personal.rulengine.mamager.cxf.callback.client.ClientPasswordCallbackHandler" />
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:outInterceptors>
+		
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+		</jaxws:inInterceptors>
+		
+	</jaxws:client>
+
+</beans>
